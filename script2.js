@@ -73,10 +73,13 @@ const data = await d3.csv("us-states.csv", (d) => {
 const width = 1280;
 const height = 800;
 const margin = 1;
+const marginTop = 20;
+
+// Inspired by: https://observablehq.com/@d3/bubble-chart-component
 
 const format = d3.format(",d");
 
-const color = d3.scaleOrdinal(d3.schemeTableau10);
+const color = d3.scaleSequential([0, 0.02], ["blue", "red"]);
 
 const pack = d3.pack()
     .size([width - margin * 2, height - margin * 2])
@@ -93,6 +96,14 @@ const svg = d3.select("svg")
     .attr("viewBox", [0, 0, width, height])
     .attr("style", `max-width: ${width}px; height: auto; font: 10px sans-serif; overflow: visible;`);
 
+svg.append("text")
+    .attr("x", (width / 2))
+    .attr("y", marginTop)
+    .attr("text-anchor", "middle")
+    .style("font-size", "16px")
+    .style("text-decoration", "underline")
+    .text("COVID-19 Deaths (absolute and by-rate)");
+
 const node = svg.append("g")
     .selectAll()
     .data(root.leaves())
@@ -104,7 +115,7 @@ node.append("title")
 
 node.append("circle")
     .attr("fill-opacity", 0.7)
-    .attr("fill", d => color(d.data))
+    .attr("fill", d => color(d.data.deaths / d.data.cases))
     .attr("r", d => d.r);
 
 const text = node.append("text")
