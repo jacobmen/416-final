@@ -84,6 +84,14 @@ const svg = d3.select("svg")
     .attr("style", `max-width: ${width}px; height: auto; font: 10px sans-serif; overflow: visible;`)
     .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
+svg.append("text")
+    .attr("x", (width / 2))
+    .attr("y", marginTop)
+    .attr("text-anchor", "middle")
+    .style("font-size", "16px")
+    .style("text-decoration", "underline")
+    .text("COVID-19 Cases and Deaths Pie Chart");
+
 const cases = data.map(d => {
     return {
         value: d.cases,
