@@ -102,7 +102,7 @@ svg.append("text")
     .attr("text-anchor", "middle")
     .style("font-size", "16px")
     .style("text-decoration", "underline")
-    .text("COVID-19 Deaths (absolute and by-rate)");
+    .text("COVID-19 Deaths (absolute and by rate)");
 
 const node = svg.append("g")
     .selectAll()

@@ -77,6 +77,8 @@ const marginRight = 0;
 const marginBottom = 30;
 const marginLeft = 70;
 
+// Inspired by https://observablehq.com/@d3/bar-chart-transitions
+
 const x = d3.scaleBand()
     .domain(Object.values(STATES))
     .range([marginLeft, width - marginRight])
